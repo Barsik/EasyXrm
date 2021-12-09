@@ -1,0 +1,33 @@
+name: Deploy
+ 
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+ 
+jobs:
+  deploy:
+ 
+    runs-on: windows-latest
+ 
+    steps:
+    - id: get_version
+      uses: battila7/get-version-action@v2
+      
+    - uses: actions/checkout@v1
+      name: Checkout Code
+      
+    - name: Setup MSBuild Path
+      uses: microsoft/setup-msbuild@v1.1
+ 
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      
+    - name: Restore NuGet Packages
+      run: nuget restore EasyXrm.sln
+ 
+    - name: Build Lib & pack
+      run: msbuild EasyXrm/EasyXrm.csproj -t:Restore /p:Configuration=Release -t:pack /p:Version=${steps.get_version.outputs.version-without-v} /p:PackageVersion=${steps.get_version.outputs.version-without-v}
+            
+    - name: nuget push
+      run: nuget push Foobar/bin/Release/EasyXrm.${steps.get_version.outputs.version-without-v}.nupkg ${{secrets.NUGET_API_KEY}} -Source https://api.nuget.org/v3/index.json
