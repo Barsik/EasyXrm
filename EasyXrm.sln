@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyXrm", "EasyXrm\EasyXrm.csproj", "{6DE437FF-BCB0-4099-A233-DE3B95D7B0E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6139FE02-FAEB-43FF-90D6-6A05B85A9EBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyXrm.Tests", "Tests\EasyXrm.Tests\EasyXrm.Tests.csproj", "{DC049777-8B75-4452-A387-45118D89C88B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,18 @@ Global
 		{6DE437FF-BCB0-4099-A233-DE3B95D7B0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE437FF-BCB0-4099-A233-DE3B95D7B0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DE437FF-BCB0-4099-A233-DE3B95D7B0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC049777-8B75-4452-A387-45118D89C88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC049777-8B75-4452-A387-45118D89C88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC049777-8B75-4452-A387-45118D89C88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC049777-8B75-4452-A387-45118D89C88B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC049777-8B75-4452-A387-45118D89C88B} = {6139FE02-FAEB-43FF-90D6-6A05B85A9EBE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6286744-4387-4E2D-8C95-CA1E1306EDF9}
 	EndGlobalSection
 EndGlobal
