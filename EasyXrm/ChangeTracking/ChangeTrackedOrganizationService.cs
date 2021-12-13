@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace EasyXrm.ChangeTracking
@@ -24,9 +25,32 @@ namespace EasyXrm.ChangeTracking
             _changeTracker = changeTracker;
         }
 
-        public Guid Create(Entity entity)
+        private void CreateTracking(Entity entity)
         {
             _changeTracker.Attach(entity);
+        }
+
+        private int UpdateTracking(Entity entity)
+        {
+            var changes = _changeTracker.PerformChanges(entity);
+            _changeTracker.Reattach(entity);
+            return changes;
+        }
+
+        private void DeleteTracking(string entityName, Guid id)
+        {
+            var entityToDetach =
+                _changeTracker.TrackedEntities.FirstOrDefault(e => e.Id == id && e.LogicalName.Equals(entityName));
+            if (entityToDetach != null)
+            {
+                _changeTracker.Detach(entityToDetach);
+            }
+        }
+
+
+        public Guid Create(Entity entity)
+        {
+            CreateTracking(entity);
             return _organizationService.Create(entity);
         }
 
@@ -39,9 +63,7 @@ namespace EasyXrm.ChangeTracking
 
         public void Update(Entity entity)
         {
-            var changes = _changeTracker.PerformChanges(entity);
-            _changeTracker.Reattach(entity);
-            if (changes > 0)
+            if (UpdateTracking(entity) > 0)
             {
                 _organizationService.Update(entity);
             }
@@ -49,17 +71,26 @@ namespace EasyXrm.ChangeTracking
 
         public void Delete(string entityName, Guid id)
         {
-            var entityToDetach =
-                _changeTracker.TrackedEntities.FirstOrDefault(e => e.Id == id && e.LogicalName.Equals(entityName));
-            if (entityToDetach != null)
-            {
-                _changeTracker.Detach(entityToDetach);
-            }
+            DeleteTracking(entityName, id);
+
+            _organizationService.Delete(entityName, id);
         }
 
         public OrganizationResponse Execute(OrganizationRequest request)
         {
-            //todo тут нужно тоже отслеживать
+            if (request is CreateRequest createRequest)
+            {
+                CreateTracking(createRequest.Target);
+            }
+            else if (request is UpdateRequest updateRequest)
+            {
+                UpdateTracking(updateRequest.Target);
+            }
+            else if (request is DeleteRequest deleteRequest)
+            {
+                DeleteTracking(deleteRequest.Target.LogicalName, deleteRequest.Target.Id);
+            }
+
             return _organizationService.Execute(request);
         }
 
