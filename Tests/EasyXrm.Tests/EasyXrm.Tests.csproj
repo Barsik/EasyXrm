@@ -118,7 +118,12 @@
   <ItemGroup>
     <Compile Include="ChangeTracking\ChangeTrackedOrganizationServiceTests.cs" />
     <Compile Include="ChangeTracking\ChangeTrackerTests.cs" />
+    <Compile Include="Entities\FoobarEntity\Foobar.cs" />
+    <Compile Include="Entities\FoobarEntity\GenderCode.cs" />
+    <Compile Include="Models\EnumerationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\QueryBuilderTests.cs" />
+    <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
