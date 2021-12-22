@@ -9,6 +9,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6139FE02
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyXrm.Tests", "Tests\EasyXrm.Tests\EasyXrm.Tests.csproj", "{DC049777-8B75-4452-A387-45118D89C88B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyXrm.Json", "EasyXrm.Json\EasyXrm.Json.csproj", "{FF3A51A4-6653-48F9-A91C-7E8B4EEEB7A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{105EB59A-D24D-4DCF-A75B-D09FB2D4D892}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		RELEASE_NOTES.md = RELEASE_NOTES.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +31,10 @@ Global
 		{DC049777-8B75-4452-A387-45118D89C88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC049777-8B75-4452-A387-45118D89C88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC049777-8B75-4452-A387-45118D89C88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF3A51A4-6653-48F9-A91C-7E8B4EEEB7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF3A51A4-6653-48F9-A91C-7E8B4EEEB7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF3A51A4-6653-48F9-A91C-7E8B4EEEB7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF3A51A4-6653-48F9-A91C-7E8B4EEEB7A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

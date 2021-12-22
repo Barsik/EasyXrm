@@ -19,11 +19,6 @@ namespace EasyXrm.ChangeTracking
         {
         }
 
-        public ChangeTracker(Entity entity)
-        {
-            Attach(entity);
-        }
-
         public ChangeTracker(params Entity[] entities)
         {
             Attach(entities);
